@@ -1,0 +1,28 @@
+<html>
+<body>
+<button onclick="sendJson()">原生Json数据交互测试</button>
+<button onclick="sendJson2()">Json数据交互测试</button>
+</body>
+<script type="text/javascript">
+ function sendJson(){
+	 $.ajax({
+		 url:"http://localhost:8080/opt-out/record",
+		 type:"post",
+		 data:'{"test":1,"name":"李思思","price":2300,"createtime":"2017-09-09 12:23:09"}',
+		contentType:"application/json;charset=utf-8",
+		success:function(data){
+			alert(data.id+":"+data.name);
+		}
+ 
+	 })
+ }
+ function sendJson2(){
+	 
+	 $.post("${pageContext.request.contextPath }/item/jsontest2.action",
+			 {"id":1,"name":"张三","createtime":"2017-09-09 12:23:09"},function(data){
+		 alert(data.name);
+	 },"json")
+ }
+</script>
+
+</html>
